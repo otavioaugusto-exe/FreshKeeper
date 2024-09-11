@@ -1,12 +1,13 @@
 //
 //  SquareWidget.swift
-//  CasaCuida
+//  FreshKeeper
 //
 //  Created by Otávio Augusto on 27/07/24.
 //
 
 import SwiftUI
 
+/// Widget quadrado pequeno para a interface do App
 struct SquareWidget: View {
 	private let size: CGFloat
 	let geo: GeometryProxy
@@ -36,8 +37,8 @@ struct SquareWidget: View {
 				Text(title)
 					.font(.title3)
 					.fontWeight(.semibold)
-				Text(description)
-					.font(.subheadline)
+					.lineLimit(3, reservesSpace: true)
+					.padding(.vertical, size*0.05)
 			}
 			.frame(maxWidth: size*0.75, maxHeight: size*0.85, alignment: .leading)
 		}

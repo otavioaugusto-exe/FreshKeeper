@@ -10,7 +10,21 @@
 		7FB4B21E2C59ED2200B5FF5B /* FreshKeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4B21D2C59ED2200B5FF5B /* FreshKeeperApp.swift */; };
 		7FB4B2222C59ED2400B5FF5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB4B2212C59ED2400B5FF5B /* Assets.xcassets */; };
 		7FB4B2262C59ED2400B5FF5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB4B2252C59ED2400B5FF5B /* Preview Assets.xcassets */; };
+		7FE526252C90EF6800E84D86 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE526242C90EF6800E84D86 /* SwiftUI.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7FE526342C90EF6A00E84D86 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7FB4B21A2C59ED2200B5FF5B /* FreshKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -18,11 +32,36 @@
 		7FB4B2212C59ED2400B5FF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FB4B2232C59ED2400B5FF5B /* FreshKeeper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FreshKeeper.entitlements; sourceTree = "<group>"; };
 		7FB4B2252C59ED2400B5FF5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7FE526202C90EF6800E84D86 /* ExpiredProductsWidget ExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ExpiredProductsWidget ExtensionExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FE526242C90EF6800E84D86 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7F6C18BD2C8D0C80002C5CD1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				NotificationService.swift,
+				ProductLabelMaker.swift,
+				ProductSample.swift,
+			);
+			target = 7FB4B2192C59ED2200B5FF5B /* FreshKeeper */;
+		};
+		7FE526122C90EDAE00E84D86 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				EditProductView.swift,
+				ShelfView.swift,
+			);
+			target = 7FB4B2192C59ED2200B5FF5B /* FreshKeeper */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		7F6C18BA2C8D0C5A002C5CD1 /* Core */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7F6C18BD2C8D0C80002C5CD1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Core; sourceTree = "<group>"; };
 		7FB4B2322C59ED4B00B5FF5B /* Home */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Home; sourceTree = "<group>"; };
 		7FB4B2342C59ED4B00B5FF5B /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		7FE526112C90EDA000E84D86 /* Shelf */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7FE526122C90EDAE00E84D86 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Shelf; sourceTree = "<group>"; };
+		7FE526172C90EDD200E84D86 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +72,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FE5261D2C90EF6800E84D86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FE526252C90EF6800E84D86 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -40,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				7FB4B21C2C59ED2200B5FF5B /* FreshKeeper */,
+				7FE526212C90EF6800E84D86 /* Frameworks */,
 				7FB4B21B2C59ED2200B5FF5B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				7FB4B21A2C59ED2200B5FF5B /* FreshKeeper.app */,
+				7FE526202C90EF6800E84D86 /* ExpiredProductsWidget ExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,6 +104,9 @@
 		7FB4B21C2C59ED2200B5FF5B /* FreshKeeper */ = {
 			isa = PBXGroup;
 			children = (
+				7FE526172C90EDD200E84D86 /* Components */,
+				7FE526112C90EDA000E84D86 /* Shelf */,
+				7F6C18BA2C8D0C5A002C5CD1 /* Core */,
 				7FB4B21D2C59ED2200B5FF5B /* FreshKeeperApp.swift */,
 				7FB4B2322C59ED4B00B5FF5B /* Home */,
 				7FB4B2342C59ED4B00B5FF5B /* Models */,
@@ -73,6 +125,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		7FE526212C90EF6800E84D86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FE526242C90EF6800E84D86 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +143,7 @@
 				7FB4B2162C59ED2200B5FF5B /* Sources */,
 				7FB4B2172C59ED2200B5FF5B /* Frameworks */,
 				7FB4B2182C59ED2200B5FF5B /* Resources */,
+				7FE526342C90EF6A00E84D86 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -91,11 +152,29 @@
 			fileSystemSynchronizedGroups = (
 				7FB4B2322C59ED4B00B5FF5B /* Home */,
 				7FB4B2342C59ED4B00B5FF5B /* Models */,
+				7FE526172C90EDD200E84D86 /* Components */,
 			);
 			name = FreshKeeper;
 			productName = FreshKeeper;
 			productReference = 7FB4B21A2C59ED2200B5FF5B /* FreshKeeper.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7FE5261F2C90EF6800E84D86 /* ExpiredProductsWidget ExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FE526312C90EF6A00E84D86 /* Build configuration list for PBXNativeTarget "ExpiredProductsWidget ExtensionExtension" */;
+			buildPhases = (
+				7FE5261C2C90EF6800E84D86 /* Sources */,
+				7FE5261D2C90EF6800E84D86 /* Frameworks */,
+				7FE5261E2C90EF6800E84D86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ExpiredProductsWidget ExtensionExtension";
+			productName = "ExpiredProductsWidget ExtensionExtension";
+			productReference = 7FE526202C90EF6800E84D86 /* ExpiredProductsWidget ExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -108,6 +187,9 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					7FB4B2192C59ED2200B5FF5B = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					7FE5261F2C90EF6800E84D86 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -126,6 +208,7 @@
 			projectRoot = "";
 			targets = (
 				7FB4B2192C59ED2200B5FF5B /* FreshKeeper */,
+				7FE5261F2C90EF6800E84D86 /* ExpiredProductsWidget ExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -140,6 +223,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FE5261E2C90EF6800E84D86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -148,6 +238,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FB4B21E2C59ED2200B5FF5B /* FreshKeeperApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FE5261C2C90EF6800E84D86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +378,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -289,8 +387,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -320,6 +417,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -328,8 +426,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -343,6 +440,65 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		7FE526322C90EF6A00E84D86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4WW5SMQ933;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ExpiredProductsWidget Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ExpiredProductsWidget Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "otavioaugusto-exe.FreshKeeper.ExpiredProductsWidget-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7FE526332C90EF6A00E84D86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4WW5SMQ933;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ExpiredProductsWidget Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ExpiredProductsWidget Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "otavioaugusto-exe.FreshKeeper.ExpiredProductsWidget-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -363,6 +519,15 @@
 			buildConfigurations = (
 				7FB4B22A2C59ED2400B5FF5B /* Debug */,
 				7FB4B22B2C59ED2400B5FF5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FE526312C90EF6A00E84D86 /* Build configuration list for PBXNativeTarget "ExpiredProductsWidget ExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FE526322C90EF6A00E84D86 /* Debug */,
+				7FE526332C90EF6A00E84D86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

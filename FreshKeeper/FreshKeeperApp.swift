@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FreshKeeperApp: App {
@@ -13,5 +14,6 @@ struct FreshKeeperApp: App {
         WindowGroup {
 			MainView()
         }
+		.modelContainer(for: Product.self)
     }
 }
