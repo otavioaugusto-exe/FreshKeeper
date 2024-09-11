@@ -74,6 +74,7 @@ struct ShelfView: View {
 	func deleteProduct(_ indexSet: IndexSet) -> Void {
 		for index in indexSet {
 			let product = products[index]
+			NotificationService.notificationScheduler(for: product, cancelAllNotifications: true)
 			modelContext.delete(product)
 		}
 	}

@@ -16,7 +16,13 @@ struct SquareWidget: View {
 	let description: String
 	let icon: String
 	
-	init(geo: GeometryProxy, title: String = "Title", mainColor: Color = .green, description: String = "Lorem ipsum dolor sit amet, consectetur.", icon: String = "tree.fill") {
+	init(
+		geo: GeometryProxy,
+		title: String = "Title",
+		mainColor: Color = .green,
+		description: String = "Lorem ipsum dolor sit amet, consectetur.",
+		icon: String = "tree.fill"
+	) {
 		self.geo = geo
 		self.size = geo.size.width/2
 		self.title = title

@@ -20,7 +20,15 @@ struct LargeWidget: View {
 	let mainColor: Color
 	let icon: String
 	
-	init(geo: GeometryProxy, mainInfo: String = "", title: String = "", subInfo: String = "", description: String = "", mainColor: Color = .red, icon: String = "heart.fill") {
+	init(
+		geo: GeometryProxy,
+		mainInfo: String = "",
+		title: String = "",
+		subInfo: String = "",
+		description: String = "",
+		mainColor: Color = .red,
+		icon: String = "heart.fill"
+	) {
 		self.geo = geo
 		self.width = geo.size.width
 		self.height = geo.size.height

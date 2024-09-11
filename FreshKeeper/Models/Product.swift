@@ -4,6 +4,9 @@ import SwiftUI
 
 @Model
 final class Product: Identifiable {
+	enum ProductStatus {
+		case expired, aboutToExpire, good
+	}
 	let id = UUID()
 	var name: String
 	var image: Data?
@@ -11,9 +14,15 @@ final class Product: Identifiable {
 	var openDate: Date
 	var maxDaysOpen: Int
 	var alreadyOpen: Bool = false
-	
-	enum ProductStatus {
-		case expired, aboutToExpire, good
+	var productStatus: ProductStatus {
+		switch isExpired() {
+		case .good:
+			return isPastOpenLimit()
+		case .aboutToExpire:
+			return isPastOpenLimit() == .expired ? .expired : .aboutToExpire
+		case .expired:
+			return .expired
+		}
 	}
 	
 	init(
@@ -30,7 +39,10 @@ final class Product: Identifiable {
 		self.openDate = calendar.startOfDay(for: openDate)
 		self.maxDaysOpen = maxDaysOpen
 	}
-	
+}
+
+extension Product {
+	// MARK: - STATUS DO PRODUTO
 	/// Checa se a data de validade do produto já expirou
 	/// - Returns: Retorna um valor enum do ProductStatus dependendo de sua condição.
 	private func isExpired() -> ProductStatus {
@@ -59,56 +71,53 @@ final class Product: Identifiable {
 		}
 		return .good
 	}
+}
+
+// MARK: - CALCULOS DE DATAS
+extension Product {
+	
+	/// Calcula quantos dias de diferença possui entre duas datas.
+	/// - Parameters:
+	///   - date: Data inicial
+	///   - targetDate: Data Final
+	/// - Returns: Quantidade de dias entre as datas em número inteiro.
+	private func calculateDays(from date: Date, to targetDate: Date) -> Int {
+		let calendar = Calendar.current
+		print(self.name, Int((calendar.startOfDay(for: targetDate).timeIntervalSince(date))/86400))
+		return Int((calendar.startOfDay(for: targetDate).timeIntervalSince(calendar.startOfDay(for: date)))/86400)
+	}
 	
 	/// Checa a quantos dias o produto já está aberto desde a data informada pelo usuário em openDate.
 	/// - Returns: Retorna um Int com a quantidade de dias em que o produto está aberto até o momento.
 	func getDaysAlreadyOpen() -> Int {
-		let calendar = Calendar.current
-		return Int((calendar.startOfDay(for: Date()).timeIntervalSince(openDate))/86400)
+		calculateDays(from: openDate, to: Date())
 	}
 	
-	/// Checa quantos dias o produto pode continuar aberto depois de sua abertura.
+	/// Checa quando dias falta para expirar a data de validade do produto.
+	/// - Returns: Retorna um Int com os dias restantes.
+	func getDaysUntilExpired() -> Int {
+		calculateDays(from: Date(), to: expirationDate )
+	}
+	
+	/// Checa quantos dias (em segundos) o produto pode continuar aberto depois de sua abertura.
 	/// - Returns: Retorna um intervalo de tempo em segundos restantes até o produto expirar.
-	func getremainingTimeUntilExpiration() -> TimeInterval {
+	func getOpenTimeRemaining() -> TimeInterval {
 		let calendar = Calendar.current
 		let maxTimeOpen = TimeInterval(maxDaysOpen*86400)
 		let maxOpenDate = calendar.startOfDay(for: openDate).addingTimeInterval(maxTimeOpen)
 		return maxOpenDate.timeIntervalSinceNow
 	}
 	
-	/// Checa quando dias falta para expirar a data de validade do produto.
-	/// - Returns: Retorna um Int com os dias restantes.
-	func getDaysUntilExpired() -> Int {
-		let calendar = Calendar.current
-		return Int(calendar.startOfDay(for: expirationDate).timeIntervalSince(calendar.startOfDay(for: Date())) / 86400)
-	}
-	
-	/// Checa quando dias falta para expirar a data de validade do produto.
+	/// Checa quando dias (em segundos) falta para expirar a data de validade do produto.
 	/// - Returns: Retorna um intervalo de tempo em segundos restantes até o vencimemento.
 	func getTimeUntilExpired() -> TimeInterval {
 		let calendar = Calendar.current
 		return calendar.startOfDay(for: expirationDate).timeIntervalSinceNow
 	}
-	
-	/// Checa o estado de conservação do produto
-	/// - Returns: Retorna um valor enum do ProductStatus dependendo de sua condição.
-	func checkProduct() -> ProductStatus {
-		let expiredStatus = isExpired()
-		let openStatus = isPastOpenLimit()
-		switch expiredStatus {
-		case .good:
-			return openStatus
-		case .expired:
-			return expiredStatus
-		case .aboutToExpire:
-			if openStatus == .expired {
-				return openStatus
-			} else {
-				return expiredStatus
-			}
-		}
-	}
-	
+}
+
+// MARK: - MANIPULAÇÃO DE IMAGEM
+extension Product {
 	/// Realiza a conversão e unwrap da imagem de Data? para UIImage.
 	/// - Returns: Retorna a foto do produto em uma UIImage para uso posterior.
 	func unwrapProductImage() -> UIImage {
@@ -118,4 +127,3 @@ final class Product: Identifiable {
 		return uiImage
 	}
 }
- 

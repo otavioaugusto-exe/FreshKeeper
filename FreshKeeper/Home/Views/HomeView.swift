@@ -14,8 +14,8 @@ struct HomeView: View {
 	@Query private var products: [Product]
 
 	var body: some View {
-		let expiredProducts = products.filter{$0.checkProduct() == .expired}
-		let aboutToExpireProducts = products.filter{$0.checkProduct() == .aboutToExpire}
+		let expiredProducts = products.filter{$0.productStatus == .expired}
+		let aboutToExpireProducts = products.filter{$0.productStatus == .aboutToExpire}
 		GeometryReader { geo in
 			let height = geo.size.height
 			let width = geo.size.width

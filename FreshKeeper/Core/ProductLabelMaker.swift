@@ -57,7 +57,7 @@ struct ProductLabelMaker {
 	/// - Parameter product: Produto a ser avaliado para criação das labels.
 	/// - Returns: Retorna as devidas labels de acordo com o estado do produto,
 	static func getProductLabel(for product: Product) -> some View {
-		let productStatus = product.checkProduct()
+		let productStatus = product.productStatus
 		
 		return Group {
 			switch productStatus {

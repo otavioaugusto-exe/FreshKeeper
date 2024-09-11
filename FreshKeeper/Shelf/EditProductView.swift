@@ -52,7 +52,7 @@ struct EditProductView: View {
 								
 								// QUANDO NÃO ESTIVER EDITANDO
 								if !isEditing {
-									switch product.checkProduct() {
+									switch product.productStatus {
 									case .expired:
 										Text("Descarte, prazo expirado.")
 											.foregroundStyle(.red)
@@ -69,7 +69,7 @@ struct EditProductView: View {
 						}
 						// AGENDA NOTIFICAÇÃO AO DISMISS DA SHEET
 						.onDisappear{
-							NotificationService.scheduleNotification(for: product)
+							NotificationService.notificationScheduler(for: product)
 							isEditing = false
 						}
 						.scrollContentBackground(.hidden)

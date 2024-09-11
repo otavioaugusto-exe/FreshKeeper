@@ -14,7 +14,7 @@ struct NotificationService {
 	private static func requestNotificationAuth() {
 		UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
 			if success {
-				print("NOTIFICAÇÃO ACEITA")
+				print("AUTH NOTIFICAÇÃO ACEITA")
 			} else if let error {
 				print(error.localizedDescription)
 			}
@@ -35,8 +35,8 @@ struct NotificationService {
 		identifier: String,
 		shouldSendNotification: () -> Bool
 	) {
-		if shouldSendNotification() {
-
+		switch shouldSendNotification() {
+		case true:
 			let content = UNMutableNotificationContent()
 			content.title = title
 			content.body = description
@@ -48,33 +48,41 @@ struct NotificationService {
 					print("erro ao adicionar notificação \(error.localizedDescription)")
 				}
 			}
-		} else {
-			UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+		case false:
+			cancelPushNotification(for: identifier)
 		}
+	}
+	
+	/// Cancela a notificação do respectivo identifier
+	/// - Parameter identifier: String com o ID único da notificação.
+	private static func cancelPushNotification(for identifier: String) {
+		print("NOTIFICAÇÃO CANCELADA")
+		UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
 	}
 	
 	/// Agenda as notificações de acordo com as datas de consumo do Product.
 	/// - Parameter product: Produto a ter suas notificações agendadas.
-	static func scheduleNotification(for product: Product) {
+	/// - Parameter cancelAllNotifications: Cancela todas notificações do produto quando verdadeiro
+	static func notificationScheduler(for product: Product, cancelAllNotifications: Bool = false) {
 		requestNotificationAuth()
 		let timeUntilExpired = product.getTimeUntilExpired()
-		let timeUntilExpiration = product.getremainingTimeUntilExpiration()
+		let openTimeRemaining = product.getOpenTimeRemaining()
 		
 		//OPABTEX -> OPEN DATE ABOUT TO EXPIRE
 		makePushNotification(
 			title: "\(product.name) expira em breve",
-			description: "Está aberto à \(Int(timeUntilExpiration/86400)) dias e irá expirar amanhã, aproveite!",
-			timeInterval: timeUntilExpiration - 86400,
+			description: "Está aberto à \(Int(openTimeRemaining/86400)) dias e irá expirar amanhã, aproveite!",
+			timeInterval: openTimeRemaining - 86400,
 			identifier: "\(product.id.uuidString)OPABTEX") {
-				timeUntilExpiration - 86400 > 0 && product.alreadyOpen
+				cancelAllNotifications ? false : openTimeRemaining - 86400 > 0 && product.alreadyOpen
 			}
 		//OPEX -> OPEN DATE EXPIRED
 		makePushNotification(
 			title: "\(product.name) expirou!",
-			description: "Está aberto à \(Int(timeUntilExpiration/86400)+1) dias e expirou hoje! Recomendamos descartar.",
-			timeInterval: timeUntilExpiration,
+			description: "Está aberto à \(Int(openTimeRemaining/86400)+1) dias e expirou hoje! Recomendamos descartar.",
+			timeInterval: openTimeRemaining,
 			identifier: "\(product.id.uuidString)OPEX") {
-				timeUntilExpiration > 0 && product.alreadyOpen
+				cancelAllNotifications ? false : openTimeRemaining > 0 && product.alreadyOpen
 			}
 		
 		//EXABTEX -> EXPIRE DATE ABOUT EXPIRE
@@ -83,7 +91,7 @@ struct NotificationService {
 			description: "Irá expirar em 3 dias, aproveite!",
 			timeInterval: TimeInterval(timeUntilExpired - (3 * 86400)),
 			identifier: "\(product.id.uuidString)EXABTEX") {
-				timeUntilExpired - (3 * 86400) > 0
+				cancelAllNotifications ? false : timeUntilExpired - (3 * 86400) > 0
 			}
 		
 		//EX -> EXPIRED
@@ -92,7 +100,7 @@ struct NotificationService {
 			description: "Recomendamos descartar!",
 			timeInterval: TimeInterval(timeUntilExpired),
 			identifier: "\(product.id.uuidString)EX") {
-				timeUntilExpired > 0
+				cancelAllNotifications ? false : timeUntilExpired > 0
 			}
 	}
 }
