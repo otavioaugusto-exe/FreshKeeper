@@ -50,7 +50,7 @@ extension Product {
 		if daysUntilExpired <= 0 {
 			return .expired
 		}
-		if daysUntilExpired <= 3 {
+		if daysUntilExpired <= 1 {
 			return .aboutToExpire
 		}
 		return .good

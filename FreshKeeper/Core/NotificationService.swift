@@ -48,6 +48,7 @@ struct NotificationService {
 					print("erro ao adicionar notificação \(error.localizedDescription)")
 				}
 			}
+			print("REGISTRADA\(identifier)")
 		case false:
 			cancelPushNotification(for: identifier)
 		}
@@ -56,7 +57,7 @@ struct NotificationService {
 	/// Cancela a notificação do respectivo identifier
 	/// - Parameter identifier: String com o ID único da notificação.
 	private static func cancelPushNotification(for identifier: String) {
-		print("NOTIFICAÇÃO CANCELADA")
+		print("CANCELADA\(identifier)")
 		UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
 	}
 	
@@ -88,10 +89,10 @@ struct NotificationService {
 		//EXABTEX -> EXPIRE DATE ABOUT EXPIRE
 		makePushNotification(
 			title:  "\(product.name) expira em breve",
-			description: "Irá expirar em 3 dias, aproveite!",
-			timeInterval: TimeInterval(timeUntilExpired - (3 * 86400)),
+			description: "Irá expirar amanhã, aproveite!",
+			timeInterval: TimeInterval(timeUntilExpired - (1 * 86400)),
 			identifier: "\(product.id.uuidString)EXABTEX") {
-				cancelAllNotifications ? false : timeUntilExpired - (3 * 86400) > 0
+				cancelAllNotifications ? false : timeUntilExpired - (1 * 86400) > 0
 			}
 		
 		//EX -> EXPIRED
